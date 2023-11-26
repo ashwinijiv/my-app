@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState('secondary');
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -27,17 +27,17 @@ function App() {
 
   const toggleMode = (cls) => {
     //  To toggle switch between light and dark only 
-    if (mode === 'light') {
+    if (mode === 'secondary') {
       setMode('dark');
       document.body.style.backgroundColor = '#334e76'
       showAlert("Dark mode has been enabled", "success");
-      document.title = "TextUtils - Dark Mode"
+      // document.title = "TextUtils - Dark Mode"
     }
     else {
-      setMode('light');
+      setMode('secondary');
       document.body.style.backgroundColor = 'white'
       showAlert("Light mode has been enabled", "success");
-      document.title = "TextUtils - Light Mode"
+      // document.title = "TextUtils - Light Mode"
     }
   }
 
@@ -49,8 +49,8 @@ function App() {
         <Alert alert={alert} />
         <div className='container my-3'>
           <Routes>
-            <Route exact path="/about" element={<About/>} />
-            <Route exact path="/" element={<TextForm heading="Enter text here to analyze" mode={mode} showAlert={showAlert} />} />
+            <Route exact path="/about" element={<About mode={mode} />} />
+            <Route exact path="/" element={<TextForm heading="Modify your text below " mode={mode} showAlert={showAlert} />} />
           </Routes>
         </div>
       </Router>
